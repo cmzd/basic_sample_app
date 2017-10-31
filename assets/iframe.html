@@ -1,0 +1,116 @@
+<html>
+<head>
+  <!-- importing jQuery for later use -->
+  <script src="https://cdn.jsdelivr.net/jquery/3.0.0/jquery.min.js"></script>
+  <!-- importing Zendesk ZAT SDK -->
+  <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+
+</head>
+<body>
+  <h2>App Functionality Examples</h2>
+  <!-- https://github.com/zendesk/zendesk_app_framework_sdk -->
+  <button id="updateTicketField">Update Ticket Field</button>
+  <button id="updateUserField">Update User</button>
+  <button id="retrieveData">Run Request</button>
+  <button id="openModal">Open Modal</button>
+  <div id="showData"></div>
+  <div id="showJSONData"></div>
+
+  <script>
+    // An object containing Zendesk api calls that can be used in 
+    // other functions 
+    var requests = {
+      getCustomRoles: function() {
+        var url = "/api/v2/custom_roles.json";
+
+        return{
+          url: url,
+          type: "GET",
+          dataType: "json"
+        };
+      },
+
+      search: function(query, nextPage) {
+        var url = nextPage || "/api/v2/search.json?query=" + query;
+
+        return{
+          url: url,
+          type: "GET",
+          dataType: "json"
+        };
+      }
+    }
+    var settings = null;
+
+    // Initialise the Zendesk JavaScript API client
+    // https://developer.zendesk.com/apps/docs/apps-v2
+    var client = ZAFClient.init();
+    client.invoke('resize', { width: '100%', height: '400px' });
+    client.on('app.registered', init);
+
+    // Actions to perform when the Update Ticket Field button is pushed
+    $('#updateTicketField').click(function(event){
+        // Use the data from the app config to determine the field to set
+        // and the value to load
+        client.metadata().then(function(data){
+          var fname = 'ticket.customField:custom_field_' + data.settings.ticket_field_id;
+          var fval = data.settings.ticket_field_value;
+          client.set(fname, fval)
+        })
+    }),
+
+    // Actions to perform when the Update User button is pushed
+    $('#updateUserField').click(function(event){
+        // Get the ticket requester object
+        client.get('ticket.requester').then(function(data){
+          // Display some information from the ticket requester
+          var ud = data['ticket.requester'];
+          $('#showData').text("Ticket requester's ID is " + ud['id']);
+          client.metadata().then(function(data){
+            // Use the data from the app config to determine the field to set
+            // and the value to load
+            var uname = 'ticket.requester.customField:' + data.settings.user_field_key;
+            var uval = data.settings.user_field_value;
+            client.set(uname, uval)
+          })
+        })
+    }),
+    // Actions to perform when clicking the Run Request button
+    $("#retrieveData").click(function(event){
+      console.log('retrieving data');
+      // using the "requests" object defined at the top of the script section
+      // to build and run a request
+      client.request(requests.getCustomRoles()).then(function(data){
+        // Display the data right in the app.
+        $("#showJSONData").text(JSON.stringify(data['custom_roles']));
+      })
+    }),
+
+    // Actions to perform when the Open Modal button is pushed
+    $('#openModal').click(function(event){
+      // Create a modal
+      client.invoke('instances.create', {
+        location: 'modal',
+        url: "assets/modal.html",
+        header: "Cool Title"
+      }
+        ).then(function(obj){
+          // Identify the newly created modal so we can resize it
+          const modal = client.instance(obj['instances.create'][0].instanceGuid);
+          modal.invoke('resize', {"width": "25vw", "height": "35vh"})
+        })
+    })
+
+    function init(){
+    };
+
+    function onSettingsFetched(data) {
+      if (data.settings) this.settings = data.settings;
+    }
+
+  </script>
+</body>
+</html>

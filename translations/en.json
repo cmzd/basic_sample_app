@@ -1,0 +1,26 @@
+{
+  "app": {
+    "description": "Basic app demo that does some simple things",
+    "name": "Basic Demo App"
+  },
+  "loading": "Welcome to this Sample App",
+  "fetch": {
+    "done": "Good",
+    "fail": "failed to fetch information from the server"
+  },
+  "id": "ID",
+  "email": "Email",
+  "name": "Name",
+  "role": "Role",
+  "groups": "Groups",
+  "parameters": [
+    {"ticket_field_id": {"label": "Ticket Field ID",
+    "helpText": "ID of the custom ticket field to update with the Ticket Update button"}}, 
+    {"ticket_field_value": {"label": "Ticket Field Value", 
+    "helpText": "Value to load into the ticket field when Update buton is pushed"}},
+    {"user_field_key": {"label": "User Field Key",
+    "helpText": "Key of the User Field to be updated with the User Update button"}},
+    {"user_field_value": {"label": "User Field Value", 
+    "helpText": "Value to load into the User field when Update buton is pushed"}}
+  ]
+}
