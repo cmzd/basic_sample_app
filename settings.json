@@ -1,5 +1,12 @@
 {"ticket_field_id": 80950828,
 "ticket_field_value": "it_escalation",
 "user_field_key": "affiliate_name",
-"user_field_value": "Another New Name"
+"user_field_value": "Another New Name",
+"Arterra Base URL": "https://omega.reach4mobile.com/ModestoGW/api/v1.5",
+"Grapevine Base URL": "https://nc-ci.codebig2.net",
+"Grapevine Short URL": "https://nc-ci.codebig2.net/nc/api/v1.7/urlshorten",
+"MSP Base URL": "https://msp-ci.codebig2.net/api/v1.5",
+"MSP Device Token Location": "https://msp-ci.codebig2.net/devices/api",
+"MSP Addr Verification Location": "https://msp-ci.codebig2.net/prospect/api",
+"MSP Warranty Location": "https://msp-ci.codebig2.net/devicewarranty/api"
 }

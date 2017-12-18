@@ -13,10 +13,13 @@
     }
   },
   "parameters":[
-    {"name": "ticket_field_id", "type": "number"},
-    {"name": "ticket_field_value", "type": "text"},
-    {"name": "user_field_key","type": "text"},
-    {"name": "user_field_value", "type": "text"}
+    {"name": "Arterra Base URL", "type": "text"},
+    {"name": "Grapevine Base URL", "type": "text"},
+    {"name": "Grapevine Short URL", "type": "text"},
+    {"name": "MSP Base URL", "type": "text"},
+    {"name": "MSP Devide Token Location", "type": "text"},
+    {"name": "MSP Addr Verification Location", "type": "text"},
+    {"name": "MSP Warranty Location", "type": "text"}
   ],
   "version": "1.0",
   "frameworkVersion": "2.0"

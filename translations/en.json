@@ -14,13 +14,19 @@
   "role": "Role",
   "groups": "Groups",
   "parameters": [
-    {"ticket_field_id": {"label": "Ticket Field ID",
-    "helpText": "ID of the custom ticket field to update with the Ticket Update button"}}, 
-    {"ticket_field_value": {"label": "Ticket Field Value", 
-    "helpText": "Value to load into the ticket field when Update buton is pushed"}},
-    {"user_field_key": {"label": "User Field Key",
-    "helpText": "Key of the User Field to be updated with the User Update button"}},
-    {"user_field_value": {"label": "User Field Value", 
-    "helpText": "Value to load into the User field when Update buton is pushed"}}
+    {"Arterra Base URL": {"label": "Base URL for communication with Arterra",
+    "helpText": "Dev: https://omega.reach4mobile.com/ModestoGW/api/v1.5, Prod: https://rolex.reach4mobile.com/ModestoGW/api/v1.5"}}, 
+    {"Grapevine Base URL": {"label": "Base URL for communication with Grapevine", 
+    "helpText": "Dev: https://nc-ci.codebig2.net, Prod: https://gvnc-prod.codebig2.net"}},
+    {"Grapevine Short URL": {"label": "URL for generating Short URLs for Grapevine",
+    "helpText": "Dev: https://nc-ci.codebig2.net/nc/api/v1.7/urlshorten, Prod: https://gvnc-prod.codebig2.net/nc/api/v1.7/urlshorten"}},
+    {"MSP Base URL": {"label": "Base URL for communicating with MSP", 
+    "helpText": "Dev: https://msp-ci.codebig2.net/api/v1.5, Prod: https://msp-prod.codebig2.net/api/v1.5"}},
+    {"MSP Device Token Location": {"label": "Base URL for pulling device tokens", 
+    "helpText": "Dev: https://msp-ci.codebig2.net/devices/api, Prod: https://msp-prod.codebig2.net/devices/api"}},
+    {"MSP Addr Verification Location": {"label": "URL for verifying customer address", 
+    "helpText": "Dev: https://msp-ci.codebig2.net/prospect/api"}},
+    {"MSP Warranty Location": {"label": "Location for checking on warranty information", 
+    "helpText": "Dev: https://msp-ci.codebig2.net/devicewarranty/api, Prod: https://msp-prod.codebig2.net/devicewarranty/api"}}
   ]
 }
