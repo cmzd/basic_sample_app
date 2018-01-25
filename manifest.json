@@ -16,7 +16,8 @@
     {"name": "ticket_field_id", "type": "number"},
     {"name": "ticket_field_value", "type": "text"},
     {"name": "user_field_key","type": "text"},
-    {"name": "user_field_value", "type": "text"}
+    {"name": "user_field_value", "type": "text"},
+    {"name": "external_url", "type": "text"}
   ],
   "version": "1.0",
   "frameworkVersion": "2.0"

@@ -1,5 +1,6 @@
 {"ticket_field_id": 80950828,
 "ticket_field_value": "it_escalation",
 "user_field_key": "affiliate_name",
-"user_field_value": "Another New Name"
+"user_field_value": "Another New Name",
+"external_url": "https://jsonplaceholder.typicode.com/posts/1"
 }

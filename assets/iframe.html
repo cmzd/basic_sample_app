@@ -14,7 +14,8 @@
   <!-- https://github.com/zendesk/zendesk_app_framework_sdk -->
   <button id="updateTicketField">Update Ticket Field</button>
   <button id="updateUserField">Update User</button>
-  <button id="retrieveData">Run Request</button>
+  <button id="retrieveData">ZD Request</button>
+  <button id="externalData">Ext Data</button>
   <button id="openModal">Open Modal</button>
   <div id="showData"></div>
   <div id="showJSONData"></div>
@@ -23,11 +24,26 @@
     // An object containing Zendesk api calls that can be used in 
     // other functions 
     var requests = {
+      // request to Zendesk APIs, specifically the custom_roles endpoint
       getCustomRoles: function() {
         var url = "/api/v2/custom_roles.json";
 
         return{
           url: url,
+          type: "GET",
+          dataType: "json"
+        };
+      },
+
+      getExternalData: function(ext_url) {
+        // request to an external RESTful service. 
+        // Change the URL to something you would like for testing
+        if (ext_url === ""){
+          var ext_url = "https://jsonplaceholder.typicode.com/posts/1"
+        }
+        console.log(ext_url)
+        return{
+          url: ext_url,
           type: "GET",
           dataType: "json"
         };
@@ -78,7 +94,7 @@
           })
         })
     }),
-    // Actions to perform when clicking the Run Request button
+    // Actions to perform when clicking the ZD Request button
     $("#retrieveData").click(function(event){
       console.log('retrieving data');
       // using the "requests" object defined at the top of the script section
@@ -86,6 +102,21 @@
       client.request(requests.getCustomRoles()).then(function(data){
         // Display the data right in the app.
         $("#showJSONData").text(JSON.stringify(data['custom_roles']));
+      })
+    }),
+
+    // Actions to perform when clicking the Ext Data button
+    $("#externalData").click(function(event){
+      console.log('retrieving data');
+      // using the "requests" object defined at the top of the script section
+      // to build and run a request, this time it's a request to an external service
+      client.metadata().then(function(mdata){
+        var ext_url = mdata.settings.external_url;     
+        console.log(ext_url);   
+        client.request(requests.getExternalData(ext_url)).then(function(data){
+          // Display the data right in the app.
+          $("#showJSONData").text(JSON.stringify(data));
+        })
       })
     }),
 
